@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.light().copyWith(
           secondary: Palette.deepBlue,
         ),
+        fontFamily: 'Poppins',
       ),
       home: const HomePage(),
     );
