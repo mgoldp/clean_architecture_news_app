@@ -7,7 +7,8 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    return SizedBox(
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
       height: 300,
       width: deviceWidth - (2 * 16),
       child: Stack(children: [

@@ -26,10 +26,24 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
-          children: const [
-            TextField(
+          children: [
+            const TextField(
+              style: TextStyle(
+                color: Palette.deepBlue,
+                fontSize: 14,
+              ),
               cursorColor: Palette.deepBlue,
               decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Palette.lightGrey,
+                  size: 20,
+                ),
+                hintText: 'Search',
+                hintStyle: TextStyle(
+                  color: Palette.lightGrey,
+                  fontSize: 14,
+                ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 1,
@@ -44,10 +58,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            Text(
+            const Text(
               'Top News',
               style: TextStyle(
                 color: Palette.deepBlue,
@@ -55,10 +69,16 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            NewsCard(),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return const NewsCard();
+                  }),
+            ),
           ],
         ),
       ),
