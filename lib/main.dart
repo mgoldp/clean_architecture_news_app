@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/constants/palette.dart';
+import 'package:news_app/core/services_locator.dart';
 import 'package:news_app/features/show_news/presentation/pages/home_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setUpServices();
   runApp(const MyApp());
 }
 
