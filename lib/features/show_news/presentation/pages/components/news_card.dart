@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:news_app/core/constants/palette.dart';
+import 'package:news_app/features/show_news/domain/entities/news_info.dart';
 import 'package:news_app/features/show_news/presentation/pages/news_view_page.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({super.key});
+  const NewsCard({
+    Key? key,
+    required this.newsInfo,
+  }) : super(key: key);
+
+  final NewsInfo newsInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,9 @@ class NewsCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return const NewsViewPage();
+            return NewsViewPage(
+              newsInfo: newsInfo,
+            );
           }),
         );
       },
@@ -26,7 +35,8 @@ class NewsCard extends StatelessWidget {
             height: 260,
             color: Palette.lightGrey,
             child: Image.network(
-              'https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80',
+              newsInfo.imageURL ??
+                  'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png?20210219185637',
               fit: BoxFit.cover,
             ),
           ),
@@ -47,13 +57,13 @@ class NewsCard extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(16),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
                 child: Center(
                   child: Text(
-                    'News Title',
+                    newsInfo.title ?? '--No Title--',
                     maxLines: 2,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Palette.deepBlue,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
